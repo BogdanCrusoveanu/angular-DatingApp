@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DatingAppApi.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+
+namespace DatingAppApi.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class WeatherForecastController : ControllerBase
+    {
+        private static readonly string[] Summaries = new[]
+        {
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
+
+        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly DataContext _context;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, DataContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var weather = await _context.Weather.ToListAsync();
+
+            return Ok(weather);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetValue(int id)
+        {
+            var weather = await _context.Weather.FirstOrDefaultAsync(x => x.Id == id);
+
+            return Ok(weather);
+        }
+    }
+}
