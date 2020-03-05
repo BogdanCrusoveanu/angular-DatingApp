@@ -3,7 +3,7 @@
   "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "DatringApp-SPA": {
+    "DatingApp-SPA": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "DatringApp-SPA:build"
+            "browserTarget": "DatingApp-SPA:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "DatringApp-SPA:build:production"
+              "browserTarget": "DatingApp-SPA:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DatringApp-SPA:build"
+            "browserTarget": "DatingApp-SPA:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "DatringApp-SPA:serve"
+            "devServerTarget": "DatingApp-SPA:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "DatringApp-SPA:serve:production"
+              "devServerTarget": "DatingApp-SPA:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "DatringApp-SPA"
+  "defaultProject": "DatingApp-SPA"
 }
