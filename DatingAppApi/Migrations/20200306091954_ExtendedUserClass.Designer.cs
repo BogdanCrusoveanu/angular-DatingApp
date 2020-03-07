@@ -75,7 +75,7 @@ namespace DatingAppApi.Migrations
                     b.Property<string>("Interests")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Intorduction")
+                    b.Property<string>("Introduction")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KnownAs")
