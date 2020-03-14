@@ -1,6 +1,6 @@
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
@@ -36,6 +36,14 @@ export function tokenGetter() {
    return localStorage.getItem('token');
 }
 
+import { TimeAgoPipe } from 'time-ago-pipe';
+
+@Pipe({
+    name: 'timeAgo',
+    pure: false
+})
+export class TimeAgoExtendsPipe extends TimeAgoPipe {}
+
 export class CustomHammerConfig extends HammerGestureConfig  {
    overrides = {
        pinch: { enable: false },
@@ -55,7 +63,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      TimeAgoExtendsPipe
    ],
    imports: [
       BrowserModule,

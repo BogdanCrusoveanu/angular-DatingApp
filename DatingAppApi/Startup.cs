@@ -37,6 +37,7 @@ namespace DatingAppApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<LogUserActivity>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddDbContext<DataContext>(x => x.UseSqlServer

@@ -29,6 +29,7 @@
     "ng2-file-upload": "^1.4.0",
     "ngx-bootstrap": "^5.5.0",
     "rxjs": "~6.5.4",
+    "time-ago-pipe": "^1.3.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
