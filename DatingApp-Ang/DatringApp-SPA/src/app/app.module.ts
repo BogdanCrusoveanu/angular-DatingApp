@@ -8,6 +8,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 
+import { ListsResolver } from './_resolvers/lists.resolver';
 import { appRoutes } from './routes';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -98,6 +99,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PreventUnsavedChanges,
       MemberDetailResolver,
       MemberListResolver,
+      ListsResolver,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [
