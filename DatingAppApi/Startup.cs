@@ -40,8 +40,11 @@ namespace DatingAppApi
             services.AddScoped<LogUserActivity>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
-            services.AddDbContext<DataContext>(x => x.UseSqlServer
-            (Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DataContext>(x =>
+            {
+                x.UseLazyLoadingProxies();
+                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
             services.AddCors();
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
@@ -90,6 +93,10 @@ namespace DatingAppApi
 
             app.UseAuthentication();
 
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -99,6 +106,12 @@ namespace DatingAppApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapControllerRoute(
+                    name: "spa-fallback",
+                    pattern: "{controller=Fallback}/{action=Index}");
+
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
 
         }
