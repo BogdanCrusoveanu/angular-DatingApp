@@ -46,7 +46,7 @@ namespace DatingAppApi.Data
 
         public async Task<User> GetUser(int userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
             return user;
         }
@@ -55,20 +55,20 @@ namespace DatingAppApi.Data
         {
             var users = _context.Users.OrderByDescending(u => u.LastActive).AsQueryable();
 
-            users = users.Where(u => u.UserId != userParams.UserId);
+            users = users.Where(u => u.Id != userParams.UserId);
 
             users = users.Where(u => u.Gender == userParams.Gender);
 
             if (userParams.Likers)
             {
                 var userLikers = await GetUserLikes(userParams.UserId, userParams.Likers);
-                users = users.Where(u => userLikers.Contains(u.UserId));
+                users = users.Where(u => userLikers.Contains(u.Id));
             }
 
             if (userParams.Likees)
             {
                 var userLikees = await GetUserLikes(userParams.UserId, userParams.Likers);
-                users = users.Where(u => userLikees.Contains(u.UserId));
+                users = users.Where(u => userLikees.Contains(u.Id));
             }
 
             if (userParams.MinAge != 18 || userParams.MaxAge != 99)
@@ -98,7 +98,7 @@ namespace DatingAppApi.Data
 
         private async Task<IEnumerable<int>> GetUserLikes(int id, bool likers)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
             if (likers)
             {

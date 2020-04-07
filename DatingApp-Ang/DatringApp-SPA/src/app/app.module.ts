@@ -1,3 +1,9 @@
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { AdminService } from './_services/admin.service';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
@@ -8,6 +14,7 @@ import { BsDropdownModule, TabsModule, PaginationModule, ButtonsModule } from 'n
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
@@ -68,7 +75,12 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberEditComponent,
       PhotoEditorComponent,
       TimeAgoExtendsPipe,
-      MemberMessagesComponent
+      MemberMessagesComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      UserManagementComponent,
+      PhotoManagementComponent,
+      RolesModalComponent
    ],
    imports: [
       BrowserModule,
@@ -83,6 +95,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BrowserAnimationsModule,
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
+      ModalModule.forRoot(),
       FileUploadModule,
       JwtModule.forRoot({
          config: {
@@ -103,8 +116,12 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PreventUnsavedChanges,
       MemberDetailResolver,
       MemberListResolver,
+      AdminService,
       ListsResolver,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+   ],
+   entryComponents: [
+      RolesModalComponent
    ],
    bootstrap: [
       AppComponent

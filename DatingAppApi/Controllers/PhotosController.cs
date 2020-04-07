@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 
 namespace DatingAppApi.Controllers
 {
-    [Authorize]
     [Route("users/{userId}/photos")]
     [ApiController]
     public class PhotosController : ControllerBase
